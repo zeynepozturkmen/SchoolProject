@@ -19,6 +19,7 @@ namespace SchoolProject.Business.Services
         public Teacher CreateTeacher(Teacher teacher)
         {
             _unitOfWork.Teacher.Add(teacher);
+            _unitOfWork.Complete();
             return teacher;
         }
 
@@ -30,7 +31,7 @@ namespace SchoolProject.Business.Services
 
         public IEnumerable<Teacher> GetAllTeacher()
         {
-            return _unitOfWork.Teacher.GetAll();
+            return _unitOfWork.Teacher.Where(x=>!x.IsDeleted).ToList();
         }
 
         public Teacher GetTeacherById(int id)
@@ -41,6 +42,7 @@ namespace SchoolProject.Business.Services
         public Teacher UpdateTeacher(Teacher teacher)
         {
             _unitOfWork.Teacher.Update(teacher);
+            _unitOfWork.Complete();
             return teacher;
         }
     }

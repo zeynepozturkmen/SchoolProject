@@ -1,8 +1,9 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 @using SchoolProject.Entities.Models
-@model IEnumerable<Student>
+@model IEnumerable<Teacher>
 <!DOCTYPE html>
 
 <html>
@@ -39,9 +40,9 @@
                                     <td>@item.FullName</td>
                                     <td>@item.Address</td>
                                     <td>@item.PhoneNumber</td>
-                                    <td>@item.Email</td>        
+                                    <td>@item.Email</td>
                                     <td>
-                                        <a href="/Student/UpdateStudent/@item.Id" class=" btn btn-warning btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Güncelle</a>
+                                        <a href="/Teacher/UpdateTeacher/@item.Id" class=" btn btn-warning btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Güncelle</a>
                                     </td>
                                     <td>
                                         <a href="#" class="removeLink btn btn-danger btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Sil</a>
@@ -86,7 +87,7 @@
                 var confirmDelete = confirm('ID\'si' + id + ' olan kayıdı silmek istediğinizden emin misiniz?');
                 if (confirmDelete) {
                     $.ajax({
-                        url: '/Student/DeleteStudent/' + id,
+                        url: '/Teacher/DeleteTeacher/' + id,
                         type: 'POST',
                         success: function (result) {
                             if (result == true) {

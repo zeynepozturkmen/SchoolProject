@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,12 +22,19 @@ namespace SchoolProject.Data.RepositoryPattern.Repositories
         {
             _dbSet.Add(entity);
         }
-
+        public IQueryable<TEntity> AsQueryable()
+        {
+            return _dbSet.AsQueryable();
+        }
+        public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
+        {
+            var query = _dbSet.AsQueryable().Where(expression);
+            return query;
+        }
         public void AddRange(IEnumerable<TEntity> entities)
         {
             _dbSet.AddRange(entities);
         }
-
         public  IEnumerable<TEntity> GetAll()
         {
             return  _dbSet.ToList();

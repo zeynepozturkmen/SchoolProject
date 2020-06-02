@@ -15,5 +15,6 @@ namespace SchoolProject.Data.RepositoryPattern.Repositories
         {
 
         }
+
     }
 }

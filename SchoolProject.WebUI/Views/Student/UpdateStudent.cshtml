@@ -3,7 +3,7 @@
     Layout = null;
 }
 @using SchoolProject.WebUI.Model
-@model StudentRequestModel
+@model TeacherRequestModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,39 +18,53 @@
 <body>
 
     <div class="container">
-        <h2>Öğrenci Ekleme</h2>
+        <h2>Öğrenci Güncelleme</h2>
 
-        <form action="~/Student/AddStudent" method="post">
+        <form action="~/Student/UpdateStudent" method="post">
             <div class="form-group">
                 <label for="email">Adı Soyad:</label>
-                <input type="text" class="form-control" id="email" placeholder="Ad soyad giriniz" name="fullName">
+                <input type="hidden" class="form-control" id="email" placeholder="Ad soyad giriniz" name="studentId" value="@Model.Student.Id">
+                <input type="text" class="form-control" id="email" placeholder="Ad soyad giriniz" name="fullName" value="@Model.Student.FullName">
             </div>
             <div class="form-group">
                 <label for="pwd">Adres:</label>
-                <input type="text" class="form-control" id="pwd" placeholder="Adres giriniz" name="address">
+                <input type="text" class="form-control" id="pwd" placeholder="Adres giriniz" name="address" value="@Model.Student.Address">
             </div>
             <div class="form-group">
                 <label for="pwd">Telefon:</label>
-                <input type="text" class="form-control" id="pwd" placeholder="Telefon giriniz" name="phoneNumber">
+                <input type="text" class="form-control" id="pwd" placeholder="Telefon giriniz" name="phoneNumber" value="@Model.Student.PhoneNumber">
             </div>
             <div class="form-group">
                 <label for="pwd">Email:</label>
-                <input type="email" class="form-control" id="pwd" placeholder="Email giriniz" name="email">
+                <input type="email" class="form-control" id="pwd" placeholder="Email giriniz" name="email" value="@Model.Student.Email">
             </div>
             <select class="form-control" name="teacherId">
-                <option selected>Öğretmen Seçiniz</option>
                 @foreach (var item in Model.Teachers)
                 {
-                    <option value="@item.Id">@item.FullName</option>
+                    if (item.Id == Model.TeacherId)
+                    {
+                        <option selected value="@Model.TeacherId">@Model.Student.Teacher.FullName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.FullName</option>
+                    }
                 }
 
             </select>
             <br />
             <select class="form-control" name="classroomId">
-                <option selected>Sınıf Seçiniz</option>
                 @foreach (var item in Model.Classrooms)
                 {
-                    <option value="@item.Id">@item.Name</option>
+                    if (item.Id == @Model.ClassroomId)
+                    {
+                        <option selected value="@Model.ClassroomId">@Model.Student.Classroom.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
                 }
 
             </select>

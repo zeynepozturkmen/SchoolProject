@@ -1,8 +1,13 @@
-﻿@{
+﻿
+@{
+    Layout = null;
+}
+
+@{
     Layout = null;
 }
 @using SchoolProject.Entities.Models
-@model IEnumerable<Student>
+@model IEnumerable<Classroom>
 <!DOCTYPE html>
 
 <html>
@@ -28,7 +33,7 @@
 
 
             <div class="col-md-12">
-                <h4>Öğrenci Listesi</h4>
+                <h4>Sınıf Listesi</h4>
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordred table-striped">
                         <tbody>
@@ -36,12 +41,9 @@
                             {
                                 <tr>
                                     <td><input type="checkbox" class="checkthis" /></td>
-                                    <td>@item.FullName</td>
-                                    <td>@item.Address</td>
-                                    <td>@item.PhoneNumber</td>
-                                    <td>@item.Email</td>        
+                                    <td>@item.Name</td>
                                     <td>
-                                        <a href="/Student/UpdateStudent/@item.Id" class=" btn btn-warning btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Güncelle</a>
+                                        <a href="/Classroom/UpdateClassroom/@item.Id" class="btn btn-warning btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Güncelle</a>
                                     </td>
                                     <td>
                                         <a href="#" class="removeLink btn btn-danger btn-xs" data-id="@item.Id"><span class="glyphicon glyphicon-trash"></span>Sil</a>
@@ -86,7 +88,7 @@
                 var confirmDelete = confirm('ID\'si' + id + ' olan kayıdı silmek istediğinizden emin misiniz?');
                 if (confirmDelete) {
                     $.ajax({
-                        url: '/Student/DeleteStudent/' + id,
+                        url: '/Classroom/DeleteClassroom/' + id,
                         type: 'POST',
                         success: function (result) {
                             if (result == true) {

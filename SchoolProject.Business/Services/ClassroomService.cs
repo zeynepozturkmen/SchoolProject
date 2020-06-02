@@ -33,7 +33,7 @@ namespace SchoolProject.Business.Services
 
         public IEnumerable<Classroom> GetAllClassroom()
         {
-            return _unitOfWork.Classroom.GetAll();
+            return _unitOfWork.Classroom.Where(x=>!x.IsDeleted).ToList();
         }
 
         public Classroom GetClassroomById(int id)
@@ -44,6 +44,7 @@ namespace SchoolProject.Business.Services
         public Classroom UpdateClassroom(Classroom classroom)
         {
             _unitOfWork.Classroom.Update(classroom);
+            _unitOfWork.Complete();
             return classroom;
         }
     }

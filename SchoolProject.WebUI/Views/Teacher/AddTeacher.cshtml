@@ -2,8 +2,7 @@
 @{
     Layout = null;
 }
-@using SchoolProject.WebUI.Model
-@model StudentRequestModel
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +17,9 @@
 <body>
 
     <div class="container">
-        <h2>Öğrenci Ekleme</h2>
+        <h2>Öğretmen Ekleme</h2>
 
-        <form action="~/Student/AddStudent" method="post">
+        <form action="~/Teacher/AddTeacher" method="post">
             <div class="form-group">
                 <label for="email">Adı Soyad:</label>
                 <input type="text" class="form-control" id="email" placeholder="Ad soyad giriniz" name="fullName">
@@ -37,23 +36,6 @@
                 <label for="pwd">Email:</label>
                 <input type="email" class="form-control" id="pwd" placeholder="Email giriniz" name="email">
             </div>
-            <select class="form-control" name="teacherId">
-                <option selected>Öğretmen Seçiniz</option>
-                @foreach (var item in Model.Teachers)
-                {
-                    <option value="@item.Id">@item.FullName</option>
-                }
-
-            </select>
-            <br />
-            <select class="form-control" name="classroomId">
-                <option selected>Sınıf Seçiniz</option>
-                @foreach (var item in Model.Classrooms)
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
-
-            </select>
             <br />
             <button type="submit" class="btn btn-primary">Kaydet</button>
         </form>
